@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Normal Distribution calculator</title>
+        <script src="distribution.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1>Normal Distribution Calculator</h1>
+        </div>
+        <div class="container" id="find">
+            <div class="form-group">
+                <p>Calculate phi(x)</p>
+                <div class="form-element">
+                    <input type="text" id="x" placeholder="Input x">
+                </div>
+                <div class="form-element">
+                    <button id="submit">Go!</button>
+                </div>
+            </div>
+
+            <div class="value">
+                <span id="y"></span>
+            </div>
+        </div>
+        <div class="container" id="solve">
+            <div class="form-group">
+                <p>Solve for phi(x)</p>
+                <div class="form-element">
+                    <input type="text" id="s_y" placeholder="Input phi(x)">
+                </div>
+                <div class="form-element">
+                    <button id="submit_s">Go!</button>
+                </div>
+            </div>
+
+            <div class="value">
+                <span id="s_x"></span>
+            </div>
+        </div>
+        <div class="footer">
+            <small>Brought to you by <a href="https://grapheo12.github.io">grapheo12</a>.</small>
+        </div>
+        <script>
+            document.getElementById("submit").onclick = () => {
+                let txt = document.getElementById("x").value;
+                try {
+                    let num = Number(txt);
+                    document.getElementById("y").innerText = ("phi(x) = " + String(normal_cdf(num)));
+                } catch (error) {
+                    document.getElementById("y").innerText = error;
+                }
+            }
+
+            document.getElementById("submit_s").onclick = () => {
+                document.getElementById("s_x").innerText = "Calculating.....";
+                let txt = document.getElementById("s_y").value;
+                try {
+                    let num = Number(txt);
+                    document.getElementById("s_x").innerText = ("x = " + String(bisection_search_normal(num)));
+                } catch (error) {
+                    document.getElementById("s_x").innerText = error;
+                }
+            }
+        </script>
+    </body>
+</html>
